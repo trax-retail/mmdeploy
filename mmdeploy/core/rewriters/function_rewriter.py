@@ -178,7 +178,7 @@ class FunctionRewriter:
         # Get current records
         functions_records = self._registry.get_records(env)
         # Get current fx wrapped func nums
-        self._ori_fx_wrap_num = len(_wrapped_fns_to_patch)
+        self._ori_fx_wrap = list(_wrapped_fns_to_patch.keys())
 
         self._origin_functions = list()
         self._additional_functions = list()
@@ -247,9 +247,8 @@ class FunctionRewriter:
     def exit(self):
         """Recover the function rewrite."""
         # Restore _wrapped_fns_to_patch
-        cur_fx_wrap_num = len(_wrapped_fns_to_patch)
-        for _ in range(cur_fx_wrap_num - self._ori_fx_wrap_num):
-            _wrapped_fns_to_patch.pop(-1)
+        for item in self._ori_fx_wrap:
+            _wrapped_fns_to_patch.pop(item)
 
         for func_dict in self._origin_functions:
             func_path = func_dict['func_path']
