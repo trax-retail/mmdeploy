@@ -1,6 +1,6 @@
 ## This repo had to be forked as a whole due to a couple of issues: 
 1. This had clashing protobuf requierements
-2. `torch._wrapped_fns_to_patch` was a list in the pytorch version this was written for, now it's a dict, this caused `exit()` to crash when cleaning up the rewrites
+2. `torch._wrapped_fns_to_patch` was a list in the pytorch version this was written for, now it's a dict, this caused `FunctionRewriter.exit()` to crash when cleaning up the rewrites
 
 ------
 <div align="center">
